@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  svc-monitor:
+    image: ltservicesmek/svc-monitor
+    container_name: svc-monitor
+    restart: always
+    environment:
+      - TIME_ZONE='Europe/Paris'
+      - PSM_REFRESH_RATE_SECONDS=15
+      - PSM_AUTO_CONFIGURE=true
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_DATABASE_PREFIX=${MYSQL_DATABASE_PREFIX}
+      - PSM_WEBCRON_KEY=${PSM_WEBCRON_KEY}
+      - PSM_BASE_URL=${PSM_BASE_URL}
+      - PSM_DEBUG=true
+    ports:
+      - 8080:80
+    volumes:
+     - /sessions
